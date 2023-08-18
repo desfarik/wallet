@@ -1,0 +1,9 @@
+<ng-container *ngFor="let card of cards">
+  <div class="card secondary-container rounded-2xl p-2 aspect-square">
+    <div class="card-title on-surface-variant-text">{{card.title}}</div>
+    <div class="card-currency text-xs font-medium">{{card.currency}}</div>
+    <div class="card-paymentType">{{card.paymentType}}</div>
+    <div class="card-bank">{{card.bank}}</div>
+    <div class="card-pin font-medium text-center">{{card.pin}}</div>
+  </div>
+</ng-container>

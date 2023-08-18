@@ -1,0 +1,19 @@
+:host {
+  @apply h-screen flex flex-col;
+  ::ng-deep {
+    .mat-mdc-tab.mdc-tab {
+      @apply w-1/3;
+    }
+    .mdc-tab-indicator {
+      @apply hidden
+    }
+  }
+}
+
+.toolbar {
+  height: 48px;
+}
+
+.tab-label {
+  @apply flex flex-col items-center text-sm
+}

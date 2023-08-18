@@ -1,0 +1,35 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "paymentType . currency"
+    "pin pin pin"
+    "title title title";
+}
+
+.card-title {
+  grid-area: title;
+}
+
+.card-pin {
+  grid-area: pin;
+  align-self: center;
+}
+
+.card-currency {
+  grid-area: currency;
+}
+
+.card-paymentType {
+  grid-area: paymentType;
+}
+
+.card-bank {
+  grid-area: bank;
+}
