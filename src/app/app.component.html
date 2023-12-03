@@ -1,14 +1,16 @@
-<div class="overflow-hidden flex-grow p-4"
-     [@routeAnimations]="getRouteAnimationData()">
-  <router-outlet></router-outlet>
+<div class="overflow-hidden flex-grow p-4">
+  <div [@routeAnimations]="getRouteAnimationData()"
+  class="h-full">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 <mat-tab-group class="toolbar">
   <mat-tab>
     <ng-template mat-tab-label>
       <div routerLink="passwords-list"
            class="tab-label">
-<!--        <mat-icon>password</mat-icon>-->
-        <mat-icon>lock</mat-icon>
+        <mat-icon>password</mat-icon>
+<!--        <mat-icon>lock</mat-icon>-->
         Passwords
       </div>
     </ng-template>
