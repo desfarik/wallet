@@ -1,12 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-interface CreditCard {
-  title: string;
-  pin: string;
-  currency?: string;
-  paymentType?: string;
-  bank?: string;
-}
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CardStoreService } from "../../service/card-store.service";
 
 @Component({
   selector: 'app-cards-list',
@@ -16,27 +9,6 @@ interface CreditCard {
 })
 export class CardsListComponent {
 
-  cards: CreditCard[] = [
-    {
-      title: "Card 1",
-      pin: "1234",
-      currency: 'USD'
-    },
-    {
-      title: "Card 2",
-      pin: "2525",
-      currency: 'BYN'
-    },
-    {
-      title: "Card 3",
-      pin: "1234",
-      currency: 'USD'
-    },
-    {
-      title: "Card 4",
-      pin: "2525",
-      currency: 'BYN'
-    },
+  cardStore = inject(CardStoreService);
 
-  ]
 }

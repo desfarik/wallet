@@ -44,7 +44,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @tailwind components;
 @tailwind utilities;
 
-@import "assets/theme/theme.scss";
+
+:root {
+  --primary-color: #dbe7c8;
+  --primary-text-color: rgba(0,0,0,.87);
+
+  --secondary-color: #dbe7c8;
+  --secondary-text-color: #44483d;
+
+  --placeholder-text-color: rgba(0,0,0,.3)
+
+}
+
+.primary-background {
+  background: var(--primary-color);
+}
+
+.primary-text {
+  color: var(--primary-text-color);
+}
+
+.secondary-text {
+  color: var(--secondary-text-color);
+}
+
+.secondary-background {
+  background: var(--secondary-color);
+}
 
 
 .mdc-notched-outline__notch { border-right: none; }

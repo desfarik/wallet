@@ -1,83 +1,118 @@
-<div class="flex items-center mb-6">
-    <button mat-icon-button aria-label="add new card"
-            routerLink="/cards-list">
-        <mat-icon>close</mat-icon>
-    </button>
-    <h1 class="title-large">Add New Card</h1>
+<div class="flex items-center mb-6 gap-2">
+  <button mat-icon-button aria-label="add new card"
+          routerLink="/">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h1 class="title-large">Add New Card</h1>
 </div>
-<div #scrollBar class="overflow-auto flex flex-col">
-    <div class="card-preview secondary-container rounded-xl mb-6 flex-shrink-0">
+
+<div #scrollBar class="overflow-auto flex flex-col px-0.5">
+
+
+
+  <section class="splide" aria-label="Splide Basic HTML Example">
+    <button mat-icon-button aria-label="change card color"
+            class="change-color-button"
+            ngx-colors-trigger
+            [hideTextInput]="true"
+            [hideColorPicker]="true"
+            [formControl]="colorFormControl">
+      <mat-icon>palette</mat-icon>
+    </button>
+    <div class="splide__track">
+      <div class="splide__list">
+        <app-card-view [card]="$any(currentCard())"
+                       class="splide__slide rounded-xl flex-shrink-0"></app-card-view>
+
+        <app-card-view [card]="$any(currentCard())"
+                       class="splide__slide rounded-xl flex-shrink-0"></app-card-view>
+
+        <app-card-view [card]="$any(currentCard())"
+                       class="splide__slide rounded-xl flex-shrink-0"></app-card-view>
+      </div>
     </div>
+  </section>
 
-    <div class="flex gap-2">
-
-        <mat-form-field appearance="outline" class="flex-grow">
-            <mat-label>Label</mat-label>
-            <input #labelInput matInput placeholder="My awesome card #1"
-                   type="text">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="small-input">
-            <mat-label>Currency</mat-label>
-            <select matNativeControl>
-                <option value="BYN" selected>BYN</option>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="UZS">UZS</option>
-                <option value="RUB">RUB</option>
-                <option value="PLN">PLN</option>
-            </select>
-        </mat-form-field>
-    </div>
-
-    <div class="flex gap-2">
-        <mat-form-field appearance="outline" class="flex-grow">
-            <mat-label>Card Number</mat-label>
-            <input matInput
-                   type="tel"
-                   placeholder="4242 4242 4242 4242"
-                   mask="9999 9999 9999 9999">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="small-input">
-            <mat-label>Pin</mat-label>
-            <input matInput
-                   type="tel"
-                   placeholder="1234"
-                   mask="9999">
-        </mat-form-field>
-    </div>
-
-    <mat-form-field appearance="outline">
-        <mat-label>Card Holder Name</mat-label>
-        <input matInput
-               type="text"
-               oninput="this.value = this.value.toUpperCase()"
-               placeholder="Peter Griffin">
+  <div class="flex gap-2 mt-6">
+    <mat-form-field appearance="outline" class="flex-grow" floatLabel="always">
+      <mat-label>Card Label</mat-label>
+      <input #labelInput matInput placeholder="My awesome card #1"
+             [formControl]="labelControl"
+             name="Card Label"
+             type="text">
     </mat-form-field>
 
-    <div class="flex gap-2">
-        <mat-form-field appearance="outline" class="flex-grow">
-            <mat-label>Expiry Date</mat-label>
-            <input matInput
-                   type="tel"
-                   placeholder="10/28"
-                   mask="99/99">
-        </mat-form-field>
+    <mat-form-field appearance="outline" class="small-input">
+      <mat-label>Currency</mat-label>
+      <select matNativeControl
+              name="Card currency"
+              [formControl]="currencyControl">
+        <option value="BYN" selected>BYN</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="UZS">UZS</option>
+        <option value="RUB">RUB</option>
+        <option value="PLN">PLN</option>
+      </select>
+    </mat-form-field>
+  </div>
 
-        <mat-form-field appearance="outline" class="flex-grow">
-            <mat-label>CVV</mat-label>
-            <input matInput
-                   type="tel"
-                   placeholder="123"
-                   mask="999">
-        </mat-form-field>
-    </div>
+  <div class="flex gap-2">
+    <mat-form-field appearance="outline" class="flex-grow" floatLabel="always">
+      <mat-label>Card Number</mat-label>
+      <input matInput
+             [formControl]="cardNumberControl"
+             name="Card number"
+             type="tel"
+             placeholder="4242 4242 4242 4242"
+             mask="9999 9999 9999 9999">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="small-input" floatLabel="always">
+      <mat-label>Pin</mat-label>
+      <input matInput
+             [formControl]="pinControl"
+             type="tel"
+             placeholder="1234"
+             mask="9999">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field appearance="outline" floatLabel="always">
+    <mat-label>Card Holder Name</mat-label>
+    <input matInput
+           [formControl]="cardHolderControl"
+           type="text"
+           oninput="this.value = this.value.toUpperCase()"
+           placeholder="Peter Griffin">
+  </mat-form-field>
+
+  <div class="flex gap-2">
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Expiry Date</mat-label>
+      <input matInput
+             [formControl]="expiryDateControl"
+             type="tel"
+             placeholder="10/28"
+             mask="99/99">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>CVV</mat-label>
+      <input matInput
+             [formControl]="CVVControl"
+             type="tel"
+             placeholder="123"
+             mask="999">
+    </mat-form-field>
+  </div>
 </div>
 
 <div class="flex-grow"></div>
 
 <div class="flex justify-center p-2 pt-3"
      [class.need-scroll]="needScroll()">
-    <button mat-flat-button color="primary" class="w-2/3 submit-button">Add New Card</button>
+  <button mat-flat-button color="primary" class="w-2/3 submit-button"
+          (click)="addNewCard()">Add New Card
+  </button>
 </div>

@@ -1,36 +1,13 @@
-<div class="overflow-hidden flex-grow p-4">
+<div class="overflow-hidden flex-grow flex flex-col">
+  <div class="toolbar flex justify-between p-4 primary-background font-medium mat-elevation-z4">
+    <h1 class="title-large">Cards</h1>
+    <button  mat-button aria-label="add new"
+            routerLink="/add-new-card">
+      Add new card
+    </button>
+  </div>
   <div [@routeAnimations]="getRouteAnimationData()"
-  class="h-full">
+       class="px-4 pt-6 flex-grow">
     <router-outlet></router-outlet>
   </div>
 </div>
-<mat-tab-group class="toolbar">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <div routerLink="passwords-list"
-           class="tab-label">
-        <mat-icon>password</mat-icon>
-<!--        <mat-icon>lock</mat-icon>-->
-        Passwords
-      </div>
-    </ng-template>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <div routerLink="cards-list"
-           class="tab-label">
-        <mat-icon>credit_card</mat-icon>
-        Cards
-      </div>
-    </ng-template>
-  </mat-tab>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <div routerLink="settings"
-           class="tab-label">
-        <mat-icon>settings</mat-icon>
-        Settings
-      </div>
-    </ng-template>
-  </mat-tab>
-</mat-tab-group>
