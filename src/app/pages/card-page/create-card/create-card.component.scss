@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  @apply p-4;
+  transition: width ease-in-out 100ms;
+
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 100vh;
+  background: white;
+  z-index: 10;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+  --mdc-outlined-text-field-input-text-placeholder-color: var(--placeholder-text-color);
+}
+
+
+.need-scroll {
+  @apply border-t-2;
+}
+
+.submit-button {
+  height: 44px !important;
+}
+
+

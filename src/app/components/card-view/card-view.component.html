@@ -1,0 +1,14 @@
+<div class="card-label" [title]="card.label">{{ card.label || 'Card Label' }}</div>
+<div class="card-currency text-xs font-medium">{{ card.currency }}</div>
+<div class="card-pin">{{ card.pin || 'Card Pin' }}</div>
+<div class="card-cardNumber">{{ (card | cardNumber) || 'Card Number' }}</div>
+<div class="card-cardHolder" [title]="card.cardHolder">{{ card.cardHolder || 'Card Holder' }}</div>
+<div class="card-expiryDate">{{ card.expiryDate }}</div>
+<div class="card-CVV">{{ card.CVV }}</div>
+
+@if (!!(card | paymentIcon)) {
+  <svg-icon class="card-paymentSystem"
+            src="assets/images/{{card | paymentIcon}}.svg"
+            [svgStyle]="{ 'width.%': 100, 'height.%': 100 }"
+  ></svg-icon>
+}

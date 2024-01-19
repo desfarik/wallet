@@ -1,0 +1,36 @@
+@import '../../../../../node_modules/@splidejs/splide/dist/css/splide.min.css';
+
+.small-input {
+  width: 120px;
+}
+
+.change-color-button {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  right: 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+:host::ng-deep {
+  .splide__pagination {
+    bottom: 1em;
+  }
+
+  .splide__arrow {
+    -webkit-tap-highlight-color: transparent;
+    background: transparent;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+      height: 100%;
+      background: white;
+      opacity: 0.6;
+      border-radius: 50%;
+    }
+  }
+}

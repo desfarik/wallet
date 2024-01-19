@@ -1,0 +1,80 @@
+:host {
+  aspect-ratio: 1.586;
+  padding: 0.75em;
+  display: grid;
+  border-radius: 0.75em;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 2em minmax(2.5em, 1fr) 2em;
+  grid-template-areas: "payment . currency"
+    "main main main"
+    "bottom bottom bottom";
+
+  > * {
+    display: none;
+  }
+}
+
+
+.card-currency {
+  grid-area: currency;
+  display: block;
+  font-size: 1.2em;
+  align-self: center;
+}
+
+.card-paymentSystem {
+  grid-area: payment;
+  display: block;
+  width: 3em;
+  align-self: center;
+}
+
+@mixin main {
+  display: block;
+  grid-area: main;
+  align-self: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2em;
+}
+
+@mixin bottom {
+  display: block;
+  grid-area: bottom;
+  font-size: 1.2em;
+  align-self: end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host.type_1 {
+  .card-pin {
+    @include main;
+  }
+
+  .card-label {
+    @include bottom;
+  }
+}
+
+:host.type_2 {
+  .card-cardNumber {
+    @include main;
+  }
+
+  .card-label {
+    @include bottom;
+  }
+}
+
+:host.type_3 {
+  .card-cardNumber {
+    @include main;
+  }
+
+  .card-cardHolder {
+    @include bottom;
+  }
+}
+

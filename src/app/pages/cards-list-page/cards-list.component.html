@@ -1,0 +1,9 @@
+<div class="card-list">
+  @for (card of cardStore.cards(); track card.id) {
+      <app-card-view class="secondary-background text-xs"
+                     [card]="card"
+                     routerLink="/card/edit/{{card.id}}"
+                     routerLinkActive="active">></app-card-view>
+  }
+</div>
+
