@@ -1,0 +1,36 @@
+.draggable-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dragging-item {
+  opacity: 1 !important;
+  box-shadow: 0 10px 10px 0 rgba(#222222, 0.3);
+  cursor: move !important;
+  overflow: hidden;
+  animation: none!important;
+}
+
+.draggable-ghost {
+  position: relative;
+
+  ::ng-deep app-card-view {
+    background-color: transparent!important;
+    animation: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color:  #e3ecec;
+    border: 3px dashed #C5CDD8;
+    z-index: 1;
+    border-radius: 0.75em;
+    overflow: hidden;
+  }
+}

@@ -7,20 +7,19 @@ import { CreditCard } from "../../../models/credit-card";
 import { v4 as uuidv4 } from 'uuid';
 import { CardFormComponent } from "../card-form/card-form.component";
 import { generateForm } from "../form-generator";
-import { NeedScrollDirective } from "../directive/need-scroll.directive";
+import { NeedScrollIndicatorDirective } from "../directive/need-scroll-indicator.directive";
 
 @Component({
   selector: 'app-create-card',
   templateUrl: './create-card.component.html',
   styleUrls: ['./create-card.component.scss'],
-  imports: [CardFormComponent, MatIconModule, RouterLink, MatButtonModule, NeedScrollDirective],
+  imports: [CardFormComponent, MatIconModule, RouterLink, MatButtonModule, NeedScrollIndicatorDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class CreateCardComponent {
   cardStore = inject(CardStoreService);
   router = inject(Router);
-  @ViewChild(NeedScrollDirective, { static: true }) cardForm?: NeedScrollDirective;
   form = generateForm();
 
   addNewCard() {

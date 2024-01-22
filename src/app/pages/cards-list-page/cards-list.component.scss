@@ -10,3 +10,15 @@
   gap: 10px;
 }
 
+.editable {
+  animation: jiggle 0.2s infinite;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}

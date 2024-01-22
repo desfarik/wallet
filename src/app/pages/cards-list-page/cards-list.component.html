@@ -1,9 +1,16 @@
-<div class="card-list">
-  @for (card of cardStore.cards(); track card.id) {
-      <app-card-view class="secondary-background text-xs"
-                     [card]="card"
-                     routerLink="/card/edit/{{card.id}}"
-                     routerLinkActive="active">></app-card-view>
-  }
-</div>
+<app-draggable-list class="card-list"
+                    [disabled]="!isEditMode()"
+                    [items]="cardStore.cards()"
+                    (itemDropped)="reorderItems($event)">
+  <ng-template draggable-item
+               let-item>
+    <app-card-view class="secondary-background text-xs"
+                   [card]="item"
+                   ngxLongPress2
+                   (onLongPress)="onLongPress()"
+                   [class.editable]="isEditMode()"
+                   (click)="navigate(item.id)">
+    </app-card-view>
+  </ng-template>
+</app-draggable-list>
 

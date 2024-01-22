@@ -12,6 +12,12 @@
 
 .toolbar {
   height: 64px;
+
+  .main-icon {
+    width: 32px;
+    min-width: 32px;
+    margin-top: -8px;
+  }
 }
 
 .tab-label {

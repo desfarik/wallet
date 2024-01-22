@@ -36,8 +36,15 @@ $wallet-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  overflow: hidden
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 @tailwind base;
@@ -46,13 +53,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 :root {
-  --primary-color: #dbe7c8;
-  --primary-text-color: rgba(0,0,0,.87);
+  --primary-color: rgb(129, 199, 132);
+  --primary-text-color: rgba(0, 0, 0, .87);
 
   --secondary-color: #dbe7c8;
   --secondary-text-color: #44483d;
 
-  --placeholder-text-color: rgba(0,0,0,.3)
+  --placeholder-text-color: rgba(0, 0, 0, .3);
 
 }
 
@@ -73,4 +80,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-.mdc-notched-outline__notch { border-right: none; }
+.mdc-notched-outline__notch {
+  border-right: none;
+}
+
+.flex.flex.flex {
+  display: flex;
+}
+
+.need-scroll {
+  @apply border-b-2;
+}

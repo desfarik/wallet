@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { provideRouter, RouterLink, RouterOutlet, withComponentInputBinding } from "@angular/router";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideAngularSvgIcon } from "angular-svg-icon";
+import { provideAngularSvgIcon, SvgIconComponent } from "angular-svg-icon";
 import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
@@ -21,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     RouterOutlet,
     RouterLink,
     HttpClientModule,
+    SvgIconComponent,
   ],
   providers: [
     provideRouter(routes, withComponentInputBinding()),

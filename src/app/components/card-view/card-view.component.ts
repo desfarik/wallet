@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CreditCard } from "../../models/credit-card";
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { CreditCard } from "@models/credit-card";
 import { CardNumberPipe } from "./pipe/card-number.pipe";
 import { SvgIconComponent } from "angular-svg-icon";
 import { PaymentIconPipe } from "./pipe/payment-icon.pipe";

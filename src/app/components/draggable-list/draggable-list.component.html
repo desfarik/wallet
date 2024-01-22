@@ -1,0 +1,7 @@
+@for (item of items; track item.id; let i = $index) {
+  <div (dragstart)="onDragStart()"
+       (dragend)="onDragEnd()">
+    <ng-template *ngTemplateOutlet="itemTemplateRef; context: { $implicit: item, index: i }">
+    </ng-template>
+  </div>
+}

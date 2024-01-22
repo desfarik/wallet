@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, Input, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { CardViewComponent } from "../../../components/card-view/card-view.component";
 import { FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -7,11 +7,12 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { NgxColorsModule } from "ngx-colors";
 import { NgxMaskDirective, provideNgxMask } from "ngx-mask";
-import { CreditCard } from "../../../models/credit-card";
-import { ToFormGroup } from "../../../utils/to-form-group";
+import { CreditCard } from "@models/credit-card";
+import { ToFormGroup } from "@utils/to-form-group";
 import Splide from "@splidejs/splide";
 import { distinctUntilChanged, startWith } from "rxjs";
-import { isEqual } from "lodash";
+import { isEqual } from "@utils/isEqual";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 export type CreditCardFormModel = ToFormGroup<Omit<CreditCard, 'id'>>
 
@@ -34,17 +35,27 @@ export type CreditCardFormModel = ToFormGroup<Omit<CreditCard, 'id'>>
   styleUrl: './card-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardFormComponent implements AfterViewInit, OnInit {
+export class CardFormComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @Input({ required: true })
   form!: FormGroup<CreditCardFormModel>
   currentCard = signal<CreditCard | null>(null)
+  splide!: Splide | null;
+  destroyRef = inject(DestroyRef)
 
   ngOnInit(): void {
     this.form.valueChanges
-      .pipe(startWith(this.form.value),
-        distinctUntilChanged(isEqual))
+      .pipe(
+        startWith(this.form.value),
+        distinctUntilChanged(isEqual),
+        takeUntilDestroyed(this.destroyRef))
       .subscribe(value => this.currentCard.set(value as CreditCard))
+  }
+
+  ngOnDestroy(): void {
+    this.splide?.off('moved');
+    this.splide?.destroy(true);
+    this.splide = null;
   }
 
   ngAfterViewInit(): void {
@@ -60,4 +71,5 @@ export class CardFormComponent implements AfterViewInit, OnInit {
       this.form.controls.previewType.setValue(index);
     })
   }
+
 }
