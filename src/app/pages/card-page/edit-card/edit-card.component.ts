@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, Input, OnInit, signal } from '@angular/core';
 import { CardViewComponent } from "../../../components/card-view/card-view.component";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { Router, RouterLink } from "@angular/router";
 import { CardStoreService } from "../../../service/card-store.service";
-import { CreditCard } from "../../../models/credit-card";
+import { CreditCard } from "@models/credit-card";
 import { NeedScrollIndicatorDirective } from "../directive/need-scroll-indicator.directive";
 import { generateForm } from "../form-generator";
 import { CardFormComponent } from "../card-form/card-form.component";

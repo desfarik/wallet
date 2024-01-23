@@ -18,14 +18,12 @@ export class DraggableListComponent implements AfterViewInit, OnDestroy {
 
   @Input() set disabled(disabled: boolean) {
     this.isActive = !disabled;
-    if (disabled) {
-      if (this.sortable) {
+    if (this.isRendered) {
+      if (this.isActive) {
+        this.sortable = this.initializeSortable()
+      } else if (this.sortable) {
         this.sortable.destroy();
         this.sortable = null;
-      }
-    } else {
-      if (this.isRendered) {
-        this.sortable = this.initializeSortable()
       }
     }
   }
@@ -48,7 +46,7 @@ export class DraggableListComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.sortable) {
+    if (this.sortable) {
       this.sortable.destroy();
       this.sortable = null;
     }
@@ -120,7 +118,6 @@ export class DraggableListComponent implements AfterViewInit, OnDestroy {
           const cloned = placeholder.cloneNode(true) as HTMLElement;
           list.append(cloned);
           cloned.style.transition = `cubic-bezier(1, 0.5, 0.2, 1) ${ANIMATION_TIMER}ms`;
-          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           cloned.offsetHeight;
           cloned.style.transform = `matrix(1, 0, 0, 1, ${this.xRect}, ${this.yRect})`;
           setTimeout(() => cloned.remove(), ANIMATION_TIMER);

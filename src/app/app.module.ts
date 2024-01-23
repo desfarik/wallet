@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatButtonModule } from "@angular/material/button";
@@ -9,6 +8,9 @@ import { provideRouter, RouterLink, RouterOutlet, withComponentInputBinding } fr
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideAngularSvgIcon, SvgIconComponent } from "angular-svg-icon";
 import { HttpClientModule } from "@angular/common/http";
+import { provideServiceWorker } from '@angular/service-worker';
+import { provideDataMigration } from "./migrators/migrators.service";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 
 @NgModule({
   declarations: [
@@ -25,8 +27,15 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   providers: [
     provideRouter(routes, withComponentInputBinding()),
-    provideAnimations(),
-    provideAngularSvgIcon()
+    provideAnimationsAsync(),
+    provideAngularSvgIcon(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    provideDataMigration(),
   ],
   bootstrap: [AppComponent]
 })

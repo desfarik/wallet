@@ -1,27 +1,27 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, HostBinding, inject, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, ElementRef, HostBinding, HostListener, inject } from '@angular/core';
 
 @Directive({
   selector: '[appNeedScrollIndicator]',
   standalone: true,
 })
 export class NeedScrollIndicatorDirective implements AfterViewInit {
+
   @HostBinding('class.need-scroll')
   needScroll = false;
 
   elementRef = inject(ElementRef);
   changeDetectorRef = inject(ChangeDetectorRef);
 
-  ngAfterViewInit(): void {
-    Promise.resolve().then(() => {
-      this.needScroll = !this.scrolledToBottom;
-    })
-    this.elementRef.nativeElement.onscroll = () => {
-      const prev = this.needScroll;
-      this.needScroll = !this.scrolledToBottom;
-      if (this.needScroll !== prev) {
-        this.changeDetectorRef.markForCheck();
-      }
+  @HostListener('scroll') onScroll() {
+    const prev = this.needScroll;
+    this.needScroll = !this.scrolledToBottom;
+    if (this.needScroll !== prev) {
+      this.changeDetectorRef.markForCheck();
     }
+  }
+
+  ngAfterViewInit(): void {
+    Promise.resolve().then(() => this.onScroll());
   }
 
   get scrolledToBottom(): boolean {

@@ -40,7 +40,7 @@ export class CardFormComponent implements AfterViewInit, OnInit, OnDestroy {
   @Input({ required: true })
   form!: FormGroup<CreditCardFormModel>
   currentCard = signal<CreditCard | null>(null)
-  splide!: Splide | null;
+  splide!: Splide;
   destroyRef = inject(DestroyRef)
 
   ngOnInit(): void {
@@ -53,20 +53,18 @@ export class CardFormComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.splide?.off('moved');
-    this.splide?.destroy(true);
-    this.splide = null;
+    this.splide.destroy(true);
   }
 
   ngAfterViewInit(): void {
     const startIndex = this.form.controls.previewType.value || 0;
-    const splide = new Splide('.splide', {
+    this.splide = new Splide('.splide', {
       type: 'slide',
       gap: '1em',
       start: startIndex
     });
-    splide.mount();
-    splide.on('moved', (index) => {
+    this.splide.mount();
+    this.splide.on('moved', (index) => {
       this.form.controls.previewType.markAsDirty();
       this.form.controls.previewType.setValue(index);
     })

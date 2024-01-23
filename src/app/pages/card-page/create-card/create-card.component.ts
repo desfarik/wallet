@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { Router, RouterLink } from "@angular/router";
 import { CardStoreService } from "../../../service/card-store.service";
-import { CreditCard } from "../../../models/credit-card";
+import { CreditCard } from "@models/credit-card";
 import { v4 as uuidv4 } from 'uuid';
 import { CardFormComponent } from "../card-form/card-form.component";
 import { generateForm } from "../form-generator";
