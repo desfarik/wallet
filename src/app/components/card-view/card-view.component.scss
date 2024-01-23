@@ -1,6 +1,6 @@
 :host {
   aspect-ratio: 1.586;
-  padding: 0.75em;
+  padding-inline: 0.75em;
   display: grid;
   border-radius: 0.75em;
   grid-template-columns: auto 1fr auto;
@@ -20,6 +20,8 @@
   display: block;
   font-size: 1.2em;
   align-self: center;
+  padding-top: 0.75em;
+
 }
 
 .card-paymentSystem {
@@ -27,6 +29,7 @@
   display: block;
   width: 3em;
   align-self: center;
+  padding-top: 0.75em;
 }
 
 @mixin main {
@@ -46,6 +49,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-bottom: 0.75em;
 }
 
 :host.type_1 {
