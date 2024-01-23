@@ -4,8 +4,9 @@
                     (itemDropped)="reorderItems($event)">
   <ng-template draggable-item
                let-item>
-    <app-card-view class="secondary-background text-xs"
+    <app-card-view class="secondary-background text-xs select-none"
                    [card]="item"
+                   [minTime]="1000"
                    ngxLongPress2
                    (onLongPress)="onLongPress()"
                    [class.editable]="isEditMode()"
